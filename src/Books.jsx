@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function BooksPage() {
+function Books() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -11,17 +11,33 @@ function BooksPage() {
   }, []);
 
   return (
-    <div>
-      <h1>Books</h1>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-        {books.map(book => (
-          <Link key={book.bookId} to={`/books/${book.bookId}`}>
-            <img src={book.cover} alt={book.title} style={{ width: '150px' }} />
+    <div className="books-grid">
+      {books.map((book) => {
+        const imageUrl = book.coverImage || book.cover || book.image || '';
+        const fullImageUrl = imageUrl.startsWith('http')
+          ? imageUrl
+          : `https://seussology.info${imageUrl}`;
+
+        return (
+          <Link
+            key={book.id}
+            to={`/books/${book.id}`}
+            className="book-item"
+          >
+            <img
+              src={fullImageUrl}
+              alt={book.title}
+              className="book-image"
+              loading="lazy"
+            />
+            <div className="book-title" title={book.title}>
+              {book.title}
+            </div>
           </Link>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 }
 
-export default BooksPage;
+export default Books;

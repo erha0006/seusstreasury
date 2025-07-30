@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Books from './Books';
 import BookDetail from './BookDetail';
-import QuotesPage from "./quotes";
+import Quotes from './QuotesPage';
 import './index.css';
 import './App.css'
 
