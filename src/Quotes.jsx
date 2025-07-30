@@ -34,4 +34,4 @@ function Quotes() {
   );
 }
 
-export default QuotesPage;
+export default Quotes;
